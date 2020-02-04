@@ -1,8 +1,8 @@
 ### O básico para utilizar o RabbitMQ no seu projeto Grails (Groovy)
 
-Antes de começar, você precisar possuir o RabbitMQ instalado no seu computador/container Docker. Siga as instruções do próprio site do RabbitMQ clicando [aqui](https://www.rabbitmq.com/download.html)
+Antes de começar, você precisar possuir o RabbitMQ instalado no seu computador ou em algum container. Siga as instruções do próprio site do RabbitMQ clicando [aqui](https://www.rabbitmq.com/download.html)
 
-Eu estou utilizando a versão 3.3.10 do Grails para a criação deste projeto e eu não sei te dizer qual a versão mínima suportada pelo RabbitMQ.
+Eu estou utilizando a versão `3.3.10` do Grails para a criação deste projeto e eu não sei te dizer qual a versão mínima suportada pelo RabbitMQ.
 
 ### Dependência
 É necessário que você configure o seu arquivo `build.gradle` para importar a dependência do client do RabbitMQ para o Java. Com isso, importe a seguinte dependência:
