@@ -1,5 +1,7 @@
 package com.pitzdev.bifrost.messagemanager
 
+import com.rabbitmq.client.Channel
+import com.rabbitmq.client.Connection
 import com.rabbitmq.client.ConnectionFactory
 
 class MessageManager {
@@ -8,8 +10,8 @@ class MessageManager {
         ConnectionFactory factory = new ConnectionFactory()
         factory.host = "localhost"
 
-        def connection = factory.newConnection()
-        def channel = connection.createChannel()
+        Connection connection = factory.newConnection()
+        Channel channel = connection.createChannel()
 
         channel.queueDeclare(queueName, false, false, false, null)
         channel.basicPublish("", queueName, null, message.getBytes())
@@ -17,5 +19,4 @@ class MessageManager {
         channel.close()
         connection.close()
     }
-   
 }
