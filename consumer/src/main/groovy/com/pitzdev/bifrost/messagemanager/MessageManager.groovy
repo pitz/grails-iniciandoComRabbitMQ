@@ -3,6 +3,8 @@ package com.pitzdev.bifrost.messagemanager
 import com.rabbitmq.client.Channel
 import com.rabbitmq.client.Connection
 import com.rabbitmq.client.ConnectionFactory
+import com.rabbitmq.client.Consumer
+import com.rabbitmq.client.DeliverCallback
 import com.rabbitmq.client.GetResponse
 
 class MessageManager {
@@ -21,17 +23,24 @@ class MessageManager {
         connection.close()
     }
 
-    public static void consume(String queueName, String message) {
+    public static void consume(String queueName) {
         ConnectionFactory factory = new ConnectionFactory()
         factory.host = "localhost"
 
         Connection connection = factory.newConnection()
         Channel channel = connection.createChannel()
-
-        GetResponse response = channel.basicGet(queueName, false)
-        println " response.body >> " + response.body
-        println " response.messageCount >> " + response.messageCount
-
         channel.queueDeclare(queueName, false,false,false,null)
+        // Consumer consumer {}
+
+        DeliverCallback deliverCallback = { consumerTag, delivery ->
+            String receivedMessage = new String(delivery.getBody(), "UTF-8")
+            println(" [x] Recebendo >> '" + receivedMessage + "'")
+            sleep(300000)
+            println(" [x] Recebido '" + receivedMessage + "'")
+        };
+        channel.basicConsume(queueName, deliverCallback, null)
+
+        // println " response.body >> " + response.body
+        // println " response.messageCount >> " + response.messageCount
     }
 }

@@ -12,6 +12,6 @@ class PropertiesService {
     public void save(PropertiesRequestDTO propertiesRequest) {
         // save & blá-blá-blá
 
-        MessageManager.publish("your queue","your message/event/data")
+        MessageManager.publish("properties","Created Place.1")
     }
 }

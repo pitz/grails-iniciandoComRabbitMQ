@@ -18,5 +18,7 @@ class MessageManager {
 
         channel.close()
         connection.close()
+
+        println 'Publicado'
     }
 }
